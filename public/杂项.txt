@@ -1,0 +1,47 @@
+@oem49.inf,%nvidia_dev.1e87%;NVIDIA GeForce RTX 2080
+Mozilla/5.0 (Windows NT 6.1; Trident/7.0; rv:11.0) like Gecko
+docker run -d --name=wxedge --restart=always --privileged --net=host --tmpfs /run --tmpfs /tmp -v /opt/docker/wxedge1:/storage:rw    docker.1ms.run/fcgdjj/wxedge
+src/gz openwrt_core http://downloads.openwrt.org/snapshots/targets/x86/64/packages
+src/gz openwrt_base http://downloads.openwrt.org/snapshots/packages/x86_64/base
+src/gz openwrt_luci http://downloads.openwrt.org/releases/18.06.9/packages/x86_64/luci
+src/gz openwrt_packages http://downloads.openwrt.org/snapshots/packages/x86_64/packages
+src/gz openwrt_routing http://downloads.openwrt.org/snapshots/packages/x86_64/routing
+hub.docker.com/r/fcgdjj/wxedge
+cat /config/workb/backup_lastgood.xml | grep aucTeleAccountPassword
+
+docker run -d --name=wxedge2 \
+  --restart=always --privileged --net=macvlan1 \
+  --tmpfs /run --tmpfs /tmp \
+  -v /mnt/wxedge2:/storage:rw  \
+  onething1/wxedge:3.1.2
+
+docker network create -d macvlan \
+--subnet=192.168.0.0/24 \
+--gateway=192.168.0.1 \
+--ipv6 \
+--subnet=fd0d:7eb5:2afd::/64 \
+--gateway=fd0d:7eb5:2afd::1 \
+-o parent=br-lan \
+macvlan1
+
+Geranium
+Reveil
+DowngradeApp
+Fliza
+
+docker run -d --name=wxedge --restart=always --privileged --net=host --tmpfs /run --tmpfs /tmp -v /mnt/user/wxedge1:/storage:rw  images-cluster.xycloud.com/wxedge/wxedge:latest
+docker run -d --name=wxedge2 --restart=always --privileged --net=host -e LISTEN_ADDR:"0.0.0.0:28888" --tmpfs /run --tmpfs /tmp -v /mnt/usb1_2-5/wxedge2:/storage:rw    images-cluster.xycloud.com/wxedge/wxedge:latest
+
+docker run -d \
+  -v /mnt/nvme0n1-1/ttnode:/mnt/data/ttnode \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  -v /proc:/host/proc:ro \
+  --name ttnode \
+  --hostname ttnode \
+  --device /dev/mem \
+  --cap-add SYS_RAWIO \
+  --privileged \
+  --net=host \
+  --restart=always \
+  -e container_name=ttnode \
+  registry.cn-hangzhou.aliyuncs.com/tiptime/ttnode:latest
